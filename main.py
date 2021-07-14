@@ -31,7 +31,7 @@ df2=pd.DataFrame(df.sort_values(by="rank",ascending=True))
 df2=df2.sort_values(by="rank",ascending=True).iloc[::-1]#排序
 df2.reset_index(inplace = True)#刷新票签
 
-#设置1
+#设置
 y=np.array(list(df2.index))
 x=np.array(list(df2['indicator']))
 xticks1=list(df2.index)

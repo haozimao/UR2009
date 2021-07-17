@@ -19,13 +19,16 @@ print("初始化登录 今日可查询:"+ str(count['spare']))
 
 #查询qihuo最新一个交易日的持仓量龙虎榜数据
 q=query(
-
+finance.FUT_MEMBER_POSITION_RANK.day,
         finance.FUT_MEMBER_POSITION_RANK.rank_type,
         finance.FUT_MEMBER_POSITION_RANK.rank,
         finance.FUT_MEMBER_POSITION_RANK.member_name,
 finance.FUT_MEMBER_POSITION_RANK.indicator_increase,
 finance.FUT_MEMBER_POSITION_RANK.indicator,).filter(finance.FUT_MEMBER_POSITION_RANK.code=='UR2109.XZCE',
-                                                    finance.FUT_MEMBER_POSITION_RANK.rank_type_ID==501001).order_by(finance.FUT_MEMBER_POSITION_RANK.day=='2021-07-13'   ).limit(20)
+                                                    finance.FUT_MEMBER_POSITION_RANK.rank_type_ID==501001).order_by\
+    (finance.FUT_MEMBER_POSITION_RANK.day.desc()).limit(20)
+print(finance.FUT_MEMBER_POSITION_RANK.day.desc('2021-7-14'))
+
 df=finance.run_query(q)
 df2=pd.DataFrame(df.sort_values(by="rank",ascending=True))
 df2=df2.sort_values(by="rank",ascending=True).iloc[::-1]#排序
